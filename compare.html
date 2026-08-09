@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>城市对比 — LynxOPC</title>
+<meta name="description" content="一人公司(OPC)政策城市对比工具。免租期限、补贴、入驻门槛并排比较。">
+<style>
+:root{
+--serif:Georgia,'Times New Roman','Songti SC','STSong','SimSun',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+--bg:#15120c;
+--panel:#1c1811;
+--panel2:#242017;
+--ink:#ede3cd;
+--muted:#ab9f85;
+--faint:#8a8168;
+--line:#3a3325;
+--line-soft:#2b261b;
+--accent:#e98a5f;
+--gold:#d8b26a;
+--chip-ink:#15120c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.masthead{max-width:960px;margin:0 auto;padding:14px 20px}
+.util{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.util .date{font-variant:small-caps;letter-spacing:.12em}
+.util a.back{margin-left:auto;color:var(--muted);font-variant:small-caps;letter-spacing:.08em}
+
+.wordmark{text-align:center;padding:18px 0 6px}
+.wordmark h1{font-family:var(--serif);font-size:32px;font-weight:700}
+.wordmark h1 .dot{color:var(--accent)}
+.wordmark .motto{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-top:4px}
+.masthead-rule{height:5px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:18px 0 0}
+
+.compare{max-width:960px;margin:0 auto;padding:24px 20px 40px}
+.compare h2{font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:6px}
+.compare .kicker{font-size:11px;letter-spacing:.34em;color:var(--accent);font-variant:small-caps;font-weight:600}
+.compare .lead{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:15px;margin:6px 0 20px}
+
+.selector{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.city-chip{background:var(--panel2);border:1px solid var(--line);color:var(--muted);padding:6px 14px;border-radius:999px;cursor:pointer;font-size:13px;transition:all .15s}
+.city-chip:hover{color:var(--accent);border-color:var(--accent)}
+.city-chip.active{color:var(--chip-ink);background:var(--accent);border-color:var(--accent)}
+
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:var(--panel2);font-family:var(--serif);font-weight:700;font-size:14px}
+th:first-child{width:140px;color:var(--muted);font-family:var(--sans);font-size:12px;font-variant:small-caps;letter-spacing:.08em}
+td .accent{color:var(--accent);font-weight:600}
+td .gold{color:var(--gold);font-weight:600}
+
+.note{background:var(--panel2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:20px;font-size:13px;color:var(--muted)}
+.note b{color:var(--gold)}
+
+footer{text-align:center;padding:30px 20px;border-top:1px solid var(--line);color:var(--faint);font-size:.78em}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="util">
+    <span class="date" id="todayDate"></span>
+    <a class="back" href="index.html">← 返回首页</a>
+  </div>
+  <div class="wordmark">
+    <h1>城市<span class="dot">·</span>对比</h1>
+    <p class="motto">City Comparison — OPC 政策并排比较</p>
+  </div>
+  <div class="masthead-rule" role="presentation"></div>
+</div>
+
+<div class="compare">
+  <span class="kicker">对比工具</span>
+  <h2>OPC 政策城市对比</h2>
+  <p class="lead">选择城市并排比较免租期限、补贴额度、入驻门槛。目前收录杭州,更多城市陆续添加。</p>
+
+  <div class="selector" id="citySelector"></div>
+  <table id="compareTable"></table>
+
+  <div class="note">
+    <b>说明:</b>本对比工具基于公开政策数据。各园区政策更新频繁,具体免租期/补贴以园区官方最新公告为准。标注"待确认"需直接联系园区核实。
+  </div>
+</div>
+
+<footer>
+  <p>LynxOPC · 数据来自公开政策源 · 不编造</p>
+  <p style="margin-top:4px"><a href="index.html">首页</a> · <a href="cities/hangzhou.html">杭州详情</a> · <a href="data/opc.json">JSON API</a> · <a href="rss.xml">RSS</a></p>
+</footer>
+
+<script>
+let DATA=null;
+const selected=new Set(['hangzhou']);
+
+async function loadData(){
+  const resp=await fetch('data/opc.json');
+  DATA=await resp.json();
+  const today=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('todayDate').textContent=today;
+  renderSelector();
+  renderTable();
+}
+
+function renderSelector(){
+  document.getElementById('citySelector').innerHTML=DATA.cities.map(c=>`
+    <button class="city-chip ${selected.has(c.id)?'active':''}" onclick="toggleCity('${c.id}')">
+      ${c.name_cn} ${c.name_en}
+    </button>`).join('');
+}
+
+function toggleCity(id){
+  if(selected.has(id))selected.delete(id);
+  else selected.add(id);
+  renderSelector();
+  renderTable();
+}
+
+function esc(s){return s.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));}
+
+function renderTable(){
+  const cities=DATA.cities.filter(c=>selected.has(c.id));
+  if(cities.length===0){document.getElementById('compareTable').innerHTML='<p style="color:var(--faint);padding:20px">请至少选择一个城市</p>';return;}
+
+  const rows=[
+    {label:'聚焦区域',getKey:c=>`<span class="accent">${esc(c.district_focus||'—')}</span>`},
+    {label:'政策数量',getKey:c=>`${c.policy_count} 条`},
+    {label:'最高补贴',getKey:c=>`<span class="gold">${esc(c.max_subsidy_cn||'—')}</span>`},
+    {label:'社区数量',getKey:c=>`${c.communities.length} 个`},
+    {label:'免租代表',getKey:c=>{const p=c.policies.find(p=>p.benefit_cn.includes('免租'));return p?`<span class="accent">${esc(p.benefit_cn)}</span>`:'—'}},
+    {label:'核心园区',getKey:c=>c.communities.slice(0,3).map(cm=>esc(cm.name_cn)).join(' · ')||'—'},
+    {label:'门槛示例',getKey:c=>{const p=c.policies.find(p=>p.requirements_cn);return p?esc(p.requirements_cn):'—'}},
+    {label:'最后更新',getKey:c=>c.updated},
+  ];
+
+  let html='<thead><tr><th></th>';
+  cities.forEach(c=>{html+=`<th>${esc(c.name_cn)} ${esc(c.name_en)}</th>`;});
+  html+='</tr></thead><tbody>';
+  rows.forEach(r=>{
+    html+=`<tr><td>${r.label}</td>`;
+    cities.forEach(c=>{html+=`<td>${r.getKey(c)}</td>`;});
+    html+='</tr>';
+  });
+  html+='</tbody>';
+  document.getElementById('compareTable').innerHTML=html;
+}
+
+loadData();
+</script>
+</body>
+</html>

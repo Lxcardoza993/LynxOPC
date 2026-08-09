@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LynxOPC — The OPC Ledger</title>
+<meta name="description" content="一人公司(One-Person Company)政策与社区信息聚合。数据来自公开政策源,不编造。先做深杭州,尤其余杭区。">
+<style>
+:root{
+--serif:Georgia,'Times New Roman','Songti SC','STSong','SimSun',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+--bg:#15120c;
+--panel:#1c1811;
+--panel2:#242017;
+--panel3:#2b2619;
+--ink:#ede3cd;
+--muted:#ab9f85;
+--faint:#8a8168;
+--line:#3a3325;
+--line-soft:#2b261b;
+--accent:#e98a5f;
+--accent-deep:#c96a42;
+--gold:#d8b26a;
+--chip-ink:#15120c;
+--focus:#f2a377;
+}
+:root[data-theme="light"]{
+--bg:#f6f1e6;
+--panel:#fffdf6;
+--panel2:#f0e9d8;
+--panel3:#e6ddc8;
+--ink:#221b0f;
+--muted:#6d6250;
+--faint:#968b74;
+--line:#d9cfb6;
+--line-soft:#e6ddc8;
+--accent:#a63d1d;
+--accent-deep:#8c3215;
+--gold:#9a6b1b;
+--chip-ink:#fffdf6;
+--focus:#a63d1d;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Masthead */
+.masthead{max-width:960px;margin:0 auto;padding:14px 20px}
+.util{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.util .date{font-variant:small-caps;letter-spacing:.12em}
+.util-controls{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn-chip{background:var(--panel2);border:1px solid var(--line);color:var(--muted);padding:3px 10px;border-radius:999px;font-size:11px;cursor:pointer;font-variant:small-caps;letter-spacing:.08em;transition:all .15s}
+.btn-chip:hover{color:var(--accent);border-color:var(--accent)}
+.btn-chip.active{color:var(--accent);border-color:var(--accent)}
+
+.wordmark{text-align:center;padding:18px 0 6px}
+.wordmark h1{font-family:var(--serif);font-size:38px;font-weight:700;letter-spacing:-.01em}
+.wordmark h1 .dot{color:var(--accent)}
+.wordmark .motto{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-top:4px}
+.masthead-rule{height:5px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:18px 0 0}
+
+/* Search */
+.searchrow{max-width:960px;margin:0 auto;padding:14px 20px 6px}
+.searchbox{display:flex;gap:8px}
+.searchbox input{flex:1;background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:9px 14px;border-radius:6px;font-family:var(--sans);font-size:14px}
+.searchbox input::placeholder{color:var(--faint);font-style:italic}
+.searchbox input:focus{border-color:var(--accent);outline:none}
+
+/* Hero */
+.hero{max-width:960px;margin:0 auto;padding:8px 20px 20px;position:relative}
+.hero::before,.hero::after{content:"";position:absolute;left:28px;right:28px;height:1px;background:var(--line)}
+.hero::before{top:4px}
+.hero::after{bottom:4px}
+.hero-head{text-align:center;margin-bottom:18px}
+.hero-head h2{font-family:var(--serif);font-size:22px;font-weight:700}
+.hero-head h2 .star{color:var(--gold);font-size:.7em;vertical-align:.18em}
+.hero-head p{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-top:2px}
+
+/* City Focus Banner */
+.focus-banner{max-width:960px;margin:0 auto;padding:0 20px 16px}
+.focus-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.focus-card .kicker{font-size:11px;letter-spacing:.34em;color:var(--accent);font-variant:small-caps;font-weight:600}
+.focus-card h3{font-family:var(--serif);font-size:20px;font-weight:700;margin:4px 0 2px}
+.focus-card .stats{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
+.focus-card .stat{text-align:center}
+.focus-card .stat .num{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--accent)}
+.focus-card .stat .label{font-size:11px;color:var(--faint);font-variant:small-caps;letter-spacing:.1em}
+
+/* Hub Grid */
+.hub{max-width:960px;margin:0 auto;padding:8px 20px 40px}
+.hub-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.hub-head h2{font-family:var(--serif);font-size:18px;font-weight:700}
+.hub-head .kicker2{font-size:11px;letter-spacing:.34em;color:var(--accent);font-variant:small-caps;font-weight:600}
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0 28px}
+.hubcard{padding:14px 0 16px;border-top:2px solid var(--ink);margin-top:16px}
+.hubcard .hc-no{font-size:11px;color:var(--faint);font-variant:small-caps;letter-spacing:.12em}
+.hubcard h3{font-family:var(--serif);font-size:19px;font-weight:700;margin:3px 0 2px}
+.hubcard h3 a{color:inherit;text-decoration:none}
+.hubcard h3 a:hover{color:var(--accent)}
+.hubcard .hc-meta{font-size:12px;color:var(--faint);display:block;margin-bottom:8px}
+.hubcard .hc-benefit{font-size:13.5px;color:var(--muted);margin-bottom:6px}
+.hubcard .hc-req{font-size:12.5px;color:var(--faint);margin-bottom:8px}
+.hubcard .hc-src{font-size:11.5px;color:var(--faint)}
+.hubcard .hc-src a{color:var(--muted)}
+.hubcard .hc-verified{display:inline-block;font-size:10px;padding:1px 7px;border-radius:999px;background:var(--accent);color:var(--chip-ink);font-variant:small-caps;letter-spacing:.06em;margin-left:6px}
+
+/* Community cards */
+.comm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:12px}
+.comm-card{background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;padding:14px 16px}
+.comm-card .cc-district{font-size:11px;color:var(--accent);font-variant:small-caps;letter-spacing:.1em}
+.comm-card h4{font-family:var(--serif);font-size:16px;font-weight:700;margin:3px 0 6px}
+.comm-card .cc-row{font-size:12.5px;color:var(--muted);margin-bottom:3px}
+.comm-card .cc-row b{color:var(--ink);font-weight:600}
+.comm-card .cc-contact{font-size:12px;color:var(--accent);margin-top:6px}
+
+/* Footer */
+footer{text-align:center;padding:30px 20px;border-top:1px solid var(--line);color:var(--faint);font-size:.78em;margin-top:20px}
+footer a{color:var(--muted)}
+
+@media(max-width:640px){
+.wordmark h1{font-size:28px}
+.focus-card .stats{margin-left:0;width:100%;justify-content:space-around}
+.hub-grid{gap:0}
+}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="util">
+    <span class="date" id="todayDate"></span>
+    <span>·</span>
+    <span class="vol">Vol. 1</span>
+    <div class="util-controls">
+      <button class="btn-chip" onclick="toggleTheme()" id="themeBtn">☾</button>
+      <button class="btn-chip active" onclick="setLang('zh',this)" id="langZh">中文</button>
+      <button class="btn-chip" onclick="setLang('en',this)" id="langEn">EN</button>
+    </div>
+  </div>
+  <div class="wordmark">
+    <h1>Lynx<span class="dot">·</span>OPC</h1>
+    <p class="motto" id="mottoText">The OPC Ledger — 一人公司政策与社区账本</p>
+  </div>
+  <div class="masthead-rule" role="presentation"></div>
+</div>
+
+<div class="searchrow">
+  <div class="searchbox">
+    <input type="text" id="searchInput" placeholder="搜索政策、社区、园区…" oninput="filterCards()">
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-head">
+    <h2><span class="star">★</span> <span id="heroTitle">杭州 · 余杭区</span></h2>
+    <p id="heroSub">一人公司(OPC)政策汇总,数据全部来自公开政策源</p>
+  </div>
+</div>
+
+<div style="max-width:960px;margin:0 auto;padding:0 20px 20px">
+  <a href="matcher.html" style="text-decoration:none">
+    <div style="background:var(--panel);border:2px solid var(--accent);border-radius:10px;padding:20px 24px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:border-color .15s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--accent)'">
+      <div style="font-size:36px">⊕</div>
+      <div style="flex:1">
+        <div style="font-size:11px;letter-spacing:.34em;color:var(--accent);font-variant:small-caps;font-weight:600">决策工具</div>
+        <h3 style="font-family:var(--serif);font-size:22px;font-weight:700;margin:2px 0">入驻匹配器 — 你能拿多少补贴?</h3>
+        <p style="font-size:13px;color:var(--muted);margin:2px 0 0">输入条件 → 自动匹配政策 + 人才补贴 → 估算 3 年总收益</p>
+      </div>
+      <div style="font-family:var(--serif);font-size:28px;color:var(--accent)">→</div>
+    </div>
+  </a>
+</div>
+
+<div class="focus-banner">
+  <div class="focus-card">
+    <div>
+      <div class="kicker" id="focusKicker">聚焦城市</div>
+      <h3 id="focusCity">杭州 Hangzhou</h3>
+      <p class="hc-benefit" id="focusTagline">余杭区为核心,梦想小镇 + 仓前 OPC 社区 + 阿里云 OPC 计划</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num" id="statPolicies">6</div><div class="label">Policies</div></div>
+      <div class="stat"><div class="num" id="statCommunities">4</div><div class="label">Communities</div></div>
+      <div class="stat"><div class="num">1.0亿</div><div class="label">Max Subsidy</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="hub" id="hub">
+  <div class="hub-head">
+    <span class="kicker2">§ 01</span>
+    <h2 id="policySection">政策条目 Policies</h2>
+  </div>
+  <div class="hub-grid" id="policyGrid"></div>
+</section>
+
+<section class="hub">
+  <div class="hub-head">
+    <span class="kicker2">§ 02</span>
+    <h2 id="communitySection">社区 / 孵化器 Communities</h2>
+  </div>
+  <div class="comm-grid" id="communityGrid"></div>
+</section>
+
+<footer>
+  <p>LynxOPC · 数据来自公开政策源 · 缺失官链时明示参考来源 · 拒绝 AI 编造</p>
+  <p style="margin-top:4px"><a href="index.html">首页</a> · <a href="cities/hangzhou.html">杭州详情</a> · <a href="compare.html">对比工具</a> · <a href="data/opc.json">JSON API</a> · <a href="rss.xml">RSS</a> · <a href="llms.txt">llms.txt</a></p>
+</footer>
+
+<script>
+let DATA=null,LANG='zh';
+
+async function loadData(){
+  const resp=await fetch('data/opc.json');
+  DATA=await resp.json();
+  render();
+  const today=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('todayDate').textContent=today;
+}
+
+function esc(s){return s.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));}
+
+function render(){
+  const city=DATA.cities[0];
+  document.getElementById('statPolicies').textContent=city.policy_count;
+  document.getElementById('statCommunities').textContent=city.communities.length;
+
+  // Policies
+  const pg=document.getElementById('policyGrid');
+  pg.innerHTML=city.policies.map((p,i)=>`
+    <div class="hubcard" data-search="${esc(p.name_cn+p.name_en+p.district+p.benefit_cn)}">
+      <span class="hc-no">No. ${String(i+1).padStart(3,'0')} · ${esc(p.district)}</span>
+      <h3>${esc(LANG==='zh'?p.name_cn:p.name_en)} ${p.verified?'<span class="hc-verified">已核实</span>':''}</h3>
+      <span class="hc-meta">${esc(p.name_en)} · 更新 ${p.updated}</span>
+      <p class="hc-benefit"><b>${LANG==='zh'?'福利':'Benefit'}:</b> ${esc(LANG==='zh'?p.benefit_cn:p.benefit_en)}</p>
+      <p class="hc-req"><b>${LANG==='zh'?'要求':'Requirements'}:</b> ${esc(LANG==='zh'?p.requirements_cn:p.requirements_en)}</p>
+      <p class="hc-src"><a href="${p.source_url}" target="_blank" rel="noopener">↗ ${esc(p.source_label)}</a></p>
+    </div>`).join('');
+
+  // Communities
+  const cg=document.getElementById('communityGrid');
+  cg.innerHTML=city.communities.map((c,i)=>`
+    <div class="comm-card" data-search="${esc(c.name_cn+c.name_en+c.district+c.focus_cn)}">
+      <div class="cc-district">No. ${String(i+1).padStart(3,'0')} · ${esc(c.district)}</div>
+      <h4>${esc(LANG==='zh'?c.name_cn:c.name_en)}</h4>
+      <div class="cc-row"><b>${LANG==='zh'?'运营':'Operator'}:</b> ${esc(LANG==='zh'?c.operator_cn:c.operator_en)}</div>
+      <div class="cc-row"><b>${LANG==='zh'?'免租':'Rent-free'}:</b> ${esc(LANG==='zh'?c.rent_free_cn:c.rent_free_en)}</div>
+      <div class="cc-row"><b>${LANG==='zh'?'方向':'Focus'}:</b> ${esc(LANG==='zh'?c.focus_cn:c.focus_en)}</div>
+      <div class="cc-row"><b>OPC:</b> ${esc(c.accepts_opc)}</div>
+      ${c.contact?`<div class="cc-contact">☎ ${esc(c.contact)}</div>`:''}
+    </div>`).join('');
+}
+
+function filterCards(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.hubcard,.comm-card').forEach(el=>{
+    el.style.display=el.dataset.search.toLowerCase().includes(q)?'':'none';
+  });
+}
+
+function setLang(l,btn){
+  LANG=l;
+  localStorage.setItem('lynxopc-lang',l);
+  document.querySelectorAll('.btn-chip[id^="lang"]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(DATA)render();
+}
+
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='light'?'dark':'light';
+  if(next==='dark')document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme','light');
+  localStorage.setItem('lynxopc-theme',next);
+  document.getElementById('themeBtn').textContent=next==='light'?'☀':'☾';
+}
+
+// Init
+const savedLang=localStorage.getItem('lynxopc-lang');
+if(savedLang){LANG=savedLang;document.getElementById('langZh').classList.toggle('active',savedLang==='zh');document.getElementById('langEn').classList.toggle('active',savedLang==='en');}
+const savedTheme=localStorage.getItem('lynxopc-theme');
+if(savedTheme==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('themeBtn').textContent='☀';}
+loadData();
+</script>
+</body>
+</html>

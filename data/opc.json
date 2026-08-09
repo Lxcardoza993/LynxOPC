@@ -1,0 +1,609 @@
+{
+  "site": {
+    "name": "LynxOPC",
+    "tagline": "The OPC Ledger",
+    "description": "一人公司政策与社区信息聚合。数据来自公开政策源,不编造。",
+    "url": "https://lynxopc.com",
+    "language": [
+      "zh",
+      "en"
+    ],
+    "updated": "2026-08-09"
+  },
+  "cities": [
+    {
+      "id": "hangzhou",
+      "name_cn": "杭州",
+      "name_en": "Hangzhou",
+      "district_focus": "余杭区",
+      "policy_count": 13,
+      "community_count": 4,
+      "max_subsidy_cn": "最高 1000 万元(滨江跟投)",
+      "updated": "2026-08-09",
+      "policies": [
+        {
+          "id": "hz-001",
+          "name_cn": "梦想小镇免租孵化",
+          "name_en": "Dream Town Rent-Free Incubation",
+          "district": "余杭区·未来科技城·仓前",
+          "benefit_cn": "免租 6 个月 + 后续租金优惠 + 基金扶持",
+          "benefit_en": "6 months rent-free + discounted rent + fund support",
+          "requirements_cn": "毕业 10 年内 + 硕士优先 + 商业计划",
+          "requirements_en": "Within 10 years of graduation, master's preferred, business plan required",
+          "source_url": "https://www.peopleapp.com/rmhvideo/30051755557",
+          "source_label": "浙江新闻频道·梦想小镇2026焕新计划",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "graduation_years_max": 10,
+            "degree_min": "bachelor",
+            "master_preferred": true,
+            "district": [
+              "余杭区"
+            ],
+            "opc_eligible": true,
+            "needs_business_plan": true
+          },
+          "estimated_benefit": {
+            "rent_free_months": 6,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "约 ¥18,000(6个月免租)",
+            "plus": "后续租金优惠 + 基金扶持"
+          }
+        },
+        {
+          "id": "hz-002",
+          "name_cn": "余杭仓前 OPC 社区招募",
+          "name_en": "Yuhang Cangqian OPC Recruitment",
+          "district": "余杭区·仓前",
+          "benefit_cn": "免房租 + 创业资金 + 政策扶持",
+          "benefit_en": "Rent-free + startup funding + policy support",
+          "requirements_cn": "一人公司 + AI 创业方向优先",
+          "requirements_en": "One-person company, AI startups prioritized",
+          "source_url": "https://tidenews.com.cn/news.html?id=3371985",
+          "source_label": "潮新闻·余杭仓前重仓OPC",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "graduation_years_max": null,
+            "degree_min": "none",
+            "master_preferred": false,
+            "district": [
+              "余杭区"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": 36,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "约 ¥108,000(3年免租,以市场租金¥3000/月估算)",
+            "plus": "创业资金 + 政策扶持"
+          }
+        },
+        {
+          "id": "hz-003",
+          "name_cn": "杭州 OPC 全球招募",
+          "name_en": "Hangzhou Global OPC Invitation",
+          "district": "全市(含余杭)",
+          "benefit_cn": "免房租 + 部分社区提供最高 5 万美元启动资金",
+          "benefit_en": "Rent-free + up to $50K startup funding in some communities",
+          "requirements_cn": "一人公司创业者,AI 方向优先",
+          "requirements_en": "OPC founders, AI direction prioritized",
+          "source_url": "https://finance.sina.com.cn/stock/wbstock/2026-06-06/doc-inianqpm0543556.shtml",
+          "source_label": "新浪财经·杭州面向全球OPC创业者发出邀请",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "graduation_years_max": null,
+            "degree_min": "none",
+            "master_preferred": false,
+            "district": [
+              "全市"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "免房租(期限因社区而异)+ 部分社区最高 5 万美元启动资金",
+            "plus": "创业生态 + 政策扶持"
+          }
+        },
+        {
+          "id": "hz-004",
+          "name_cn": "阿里云 OPC 创新计划",
+          "name_en": "Aliyun OPC Innovation Plan",
+          "district": "全市(含余杭)",
+          "benefit_cn": "阿里云百炼工具 + Token 补贴 + 加速器 + 产品包装 + 空间 + 活动",
+          "benefit_en": "Aliyun Bailian tools + token subsidy + accelerator + product packaging + space + events",
+          "requirements_cn": "OPC 创业者,使用阿里云生态",
+          "requirements_en": "OPC founders using Aliyun ecosystem",
+          "source_url": "https://startup.aliyun.com/info/1093722.html",
+          "source_label": "阿里云创业平台",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "graduation_years_max": null,
+            "degree_min": "none",
+            "master_preferred": false,
+            "district": [
+              "全市"
+            ],
+            "opc_eligible": true,
+            "needs_aliyun": true,
+            "needs_business_plan": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 0,
+            "total_savings_cn": "阿里云百炼工具 + Token 补贴(金额视使用量而定)",
+            "plus": "加速器 + 产品包装 + 空间 + 活动"
+          }
+        },
+        {
+          "id": "hz-005",
+          "name_cn": "良仓太炎众创空间",
+          "name_en": "Liangcang Taiyan Maker Space",
+          "district": "余杭区·梦想小镇体系",
+          "benefit_cn": "众创空间免租期 + 创业资源",
+          "benefit_en": "Maker space rent-free period + startup resources",
+          "requirements_cn": "创业项目,门槛较低",
+          "requirements_en": "Startup projects, lower barrier",
+          "source_url": "https://m.sohu.com/a/1036079403_121484367",
+          "source_label": "搜狐·2026杭州良仓太炎众创",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "graduation_years_max": null,
+            "degree_min": "none",
+            "master_preferred": false,
+            "district": [
+              "余杭区"
+            ],
+            "opc_eligible": true,
+            "needs_business_plan": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "众创空间免租期(期限因项目而定)+ 创业资源",
+            "plus": "门槛较低,适合早期"
+          }
+        },
+        {
+          "id": "hz-006",
+          "name_cn": "天堂软件园 OPC",
+          "name_en": "Paradise Software Park OPC",
+          "district": "滨江区",
+          "benefit_cn": "免房租入驻 OPC 社区",
+          "benefit_en": "Rent-free OPC community admission",
+          "requirements_cn": "硕士学位 + 商业计划",
+          "requirements_en": "Master's degree + business plan",
+          "source_url": "https://news.qq.com/rain/a/20260416A07BGV00",
+          "source_label": "腾讯新闻·0成本做老板",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "graduation_years_max": null,
+            "degree_min": "master",
+            "master_preferred": false,
+            "district": [
+              "滨江区"
+            ],
+            "opc_eligible": true,
+            "needs_business_plan": true
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "免房租入驻 OPC 社区(期限因入驻协议而定)",
+            "plus": "软件园区生态"
+          }
+        },
+        {
+          "id": "hz-007",
+          "name_cn": "杭州市市场监督管理局支持一人公司OPC创新创业发展的若干举措(12条)",
+          "name_en": "Hangzhou Market Supervision Bureau 12 Measures Supporting OPC Innovation & Entrepreneurship",
+          "district": "全市",
+          "benefit_cn": "制度型举措(非直接资金补贴):1.零成本市场准入(全程网办);2.一址多照、工位注册、免收住所证明材料;3.支持实物/知识产权/股权/债权/数据资产作价出资;4.免费商业秘密保护「无疏」平台(线上体检+区块链固证);5.专利优先审查绿色通道;6.OPC专属「信用账户」+免费信用信息查询;7.沙盒监管1—3年观察期(以行政指导、风险提示为主);8.首违不罚、轻微免罚、不予行政强制;9.支持短暂休眠(歇业/恢复经营);10.数据知识产权「一次登记、三证齐发」;11.OPC信用融资行动(银企对接,无抵押信用贷款);12.信用风险柔性管理(降低「双随机」抽查比重)",
+          "benefit_en": "Institutional measures (not direct cash): zero-cost market entry; multi-address workstation registration; non-monetary/data asset capital contribution; free trade secret 'Wushu' platform; patent priority green channel; OPC credit account + free query; sandbox supervision 1-3yr observation; first-violation-no-penalty; dormancy support; data IP triple-certificate; credit financing action; flexible risk management.",
+          "requirements_cn": "OPC创业模式(在AI协同下,自然人或小规模团队独立完成创意-研发-营销-交付全链路闭环;组织形式含公司、个人独资企业、个体工商户);自2026年4月15日起施行(杭市监〔2026〕43号)",
+          "requirements_en": "OPC model: natural person or small team + AI completing full business loop; org forms include company, sole proprietorship, individual business. Effective 2026-04-15 (Hangzhou Market Supervision Doc [2026] No.43).",
+          "source_url": "https://zfgb.hangzhou.gov.cn/11/104220263/t114220263044/530378.shtml",
+          "source_label": "杭州市人民政府公报·市监局支持OPC若干举措(杭市监〔2026〕43号)",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "degree_min": "none",
+            "graduation_years_max": null,
+            "district": [
+              "全市"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": false,
+            "needs_aliyun": false,
+            "overseas_degree": false,
+            "min_registered_capital": null,
+            "fresh_graduate": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 0,
+            "total_savings_cn": "制度型政策,非直接资金补贴(主要降低准入/合规/融资制度成本)",
+            "plus": "沙盒监管1—3年观察期 + 免费商业秘密保护平台 + 免费信用信息查询 + 优先审查"
+          }
+        },
+        {
+          "id": "hz-008",
+          "name_cn": "杭州高新区(滨江)人工智能OPC创业护航十条(征求意见稿·发布会报道)",
+          "name_en": "Binjiang AI OPC Entrepreneurship Escort Ten Articles (Draft Release Report)",
+          "district": "滨江区",
+          "benefit_cn": "10条大礼包(3月20日高质量创新发展大会发布征求意见稿):1.成熟社区拎包入驻(运营主体最高200万元分档奖励);2.工位减免(入驻AI OPC社区最高100%工位/会议室空间补贴,人才公寓最高50%补贴);3.Token补助(总额1亿元Token券,最高60%补助,单家AI OPC每年最高100万元,免申即享);4.金融保障(10亿元区级AI OPC专项产业基金,最高50万元创业担保贷款,获直接股权投资最高奖励200万元,区级投资基金最高跟投1000万元);5.智能体补贴(单家最高300万元);6.场景链接(标杆场景最高补助300万元,发榜揭榜方最高10万元启动支持);7.云端聚力线上赋能;8.选树标杆(获评「超级个体」最高30万元分档奖励);9.专业培训(最高1万元培训补助);10.创业服务一键直达",
+          "benefit_en": "10-article package (Mar 20 draft release): 1.Ready community (op up to ¥2M); 2.Workstation waiver (100% space subsidy, 50% talent apartment); 3.Token voucher (¥100M total pool, 60% subsidy, ¥1M/yr per firm, auto-claim); 4.Finance (¥1B fund, ¥500K guarantee loan, ¥2M equity-investment reward, ¥10M follow-on); 5.Agent subsidy (¥3M/firm); 6.Scenario (¥3M benchmark, ¥100K start); 7.Cloud park; 8.Super-individual (¥300K); 9.Training (¥10K); 10.One-stop service.",
+          "requirements_cn": "AI+OPC创业(依法登记注册);征求意见稿阶段(2026年3月20日发布,4月20日前反馈意见)",
+          "requirements_en": "AI+OPC (legally registered); draft-for-comment stage (released 2026-03-20, feedback by 04-20).",
+          "source_url": "https://tidenews.com.cn/news.html?id=3399226",
+          "source_label": "潮新闻·滨江创业护航十条大礼包(记者詹程开)",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "degree_min": "none",
+            "graduation_years_max": null,
+            "district": [
+              "滨江区"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": false,
+            "needs_aliyun": false,
+            "overseas_degree": false,
+            "min_registered_capital": null,
+            "fresh_graduate": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "空间补贴最高100% + Token补助最高100万/年 + 智能体补贴最高300万 + 超级个体最高30万 + 跟投最高1000万 + 基金10亿(单项叠加,从优从高不重复)",
+            "plus": "Token券免申即享 + 人才公寓最高50%补贴 + 培训补助最高1万"
+          }
+        },
+        {
+          "id": "hz-009",
+          "name_cn": "杭州高新区(滨江)「AI+OPC」创业护航十条(正式版)",
+          "name_en": "Binjiang \"AI+OPC\" Entrepreneurship Escort Ten Articles (Official Version)",
+          "district": "滨江区",
+          "benefit_cn": "正式版10条(2026年7月25日施行,试行1年):1.布局AI+OPC社区矩阵(运营主体最高200万元支持);2.支持人才乐居创业(AI+OPC主体最高100%空间租赁补贴;人才入住青荷驿站/人才公寓最高50%房租补贴);3.发放专属词元Token券(采购算力/模型最高60%支持,单家每年最高100万元;跨境数据传输服务单家最高100万元支持);4.支持超级智能体应用推广(按不超市场价30%给予支持,单家每年最高300万元);5.实施场景链接计划(供需双方先行最高各10万元启动;特色场景需求方最高30%最高300万元;入选省市应用场景最高500万元支持);6.培育超级个体(最高30万元支持);7.搭建云端产业园(接入「三数一链」数据基础设施和可信数据空间);8.强化金融服务保障(10亿元区级专项产业基金;获直接股权投资最高按5%支持最高200万元,或按30%跟投最高1000万元);9.发放专业培训券(每人每年最高1万元培训补助);10.全生命周期护航陪跑(线上服务专区+线下服务专席+银行绿色通道)",
+          "benefit_en": "Official 10 articles (effective 2026-07-25, 1-yr trial): 1.Community matrix (op up to ¥2M); 2.Talent housing (100% space subsidy, 50% apartment subsidy); 3.Token voucher (60% subsidy, ¥1M/yr/firm; cross-border data up to ¥1M/firm); 4.Agent app (≤30% market price, ¥3M/yr/firm); 5.Scenario link (¥100K start both sides; special ¥3M; provincial/municipal ¥5M); 6.Super-individual (¥300K); 7.Cloud park (Three-Number-One-Chain infra); 8.Finance (¥1B fund; 5% direct-investment reward up to ¥2M, or 30% follow-on up to ¥10M); 9.Training voucher (¥10K/person/yr); 10.Full-cycle escort.",
+          "requirements_cn": "依法登记注册的「AI+OPC」;申报单位须信用记录良好(未被列入杭州市公共信用信息平台严重失信名单);扶持对象对材料真实性负责;同一项目「从优、从高、不重复」+进档差额原则;自2026年7月25日起施行,试行期一年,由区科技局牵头组织实施",
+          "requirements_en": "Legally-registered 'AI+OPC'; clean credit record (not on Hangzhou public credit severe-dishonesty list); applicant liable for material truth; 'preferential, highest, non-duplicate' + tier-difference principle; effective 2026-07-25, 1-yr trial, led by district Sci-Tech Bureau.",
+          "source_url": "https://zhidx.com/p/579738.html",
+          "source_label": "智东西·最高1000万元!杭州给一人公司发钱(作者李水青)",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "degree_min": "none",
+            "graduation_years_max": null,
+            "district": [
+              "滨江区"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": false,
+            "needs_aliyun": false,
+            "overseas_degree": false,
+            "min_registered_capital": null,
+            "fresh_graduate": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "空间租赁补贴最高100% + Token券最高100万/年 + 智能体最高300万/年 + 场景最高500万 + 超级个体30万 + 跟投最高1000万 + 基金10亿(从优从高不重复)",
+            "plus": "人才公寓最高50%房租补贴 + 培训券1万/人/年 + 跨境数据100万 + 沙盒式全生命周期陪跑"
+          }
+        },
+        {
+          "id": "hz-010",
+          "name_cn": "杭州市打造全国「AI+OPC」创业新高地行动计划(2026—2028年)",
+          "name_en": "Hangzhou Action Plan for National 'AI+OPC' Entrepreneurship Highland (2026-2028)",
+          "district": "全市",
+          "benefit_cn": "「六个一」举措(一计划、一政策、一指引、一基金、一案例、一赛会);五大工程15条措施(社区引领、要素融通、人才舒心、金融护航、服务助跑);升级为省部级孵化器的OPC社区最高200万元奖励补贴;AI领域OPC创业者每年算力券金额上限高达1000万元(注:此口径待确认,或与滨江100万/年区级口径不同,可能为市级政策)。目标:到2028年建成OPC社区100个以上、认定卓越级OPC社区10个以上、培育营收超千万OPC企业100家、高成长性OPC企业5000家以上、汇聚OPC创新创业人才30000名以上",
+          "benefit_en": "'Six Ones' (plan/policy/guide/fund/case/contest); 5 projects 15 measures (community/elements/talent/finance/service); OPC community upgraded to provincial-ministerial incubator up to ¥2M reward; AI-OPC compute-voucher up to ¥10M/yr (note:口径待确认, may differ from Binjiang ¥1M/yr district-level). Goal by 2028: 100+ OPC communities, 10+ excellent, 100 firms >¥10M revenue, 5000+ high-growth, 30000+ talents.",
+          "requirements_cn": "全市OPC创新创业;市区联动政策体系;杭州争创全国人工智能创新发展第一城;行动计划在2026年6月首届「AI+OPC」创新发展大会发布",
+          "requirements_en": "Citywide OPC innovation; city-district coordinated policy; Hangzhou competing for national AI innovation first city; released at 1st 'AI+OPC' Innovation & Development Conference Jun 2026.",
+          "source_url": "https://zjic.zj.gov.cn/ywdh/qyfz/202606/t20260630_24139659.shtml",
+          "source_label": "浙江省经济信息中心·杭州全力打造全国AI+OPC创业新高地(转每日商报,记者黄诗睿)",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "degree_min": "none",
+            "graduation_years_max": null,
+            "district": [
+              "全市"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": false,
+            "needs_aliyun": false,
+            "overseas_degree": false,
+            "min_registered_capital": null,
+            "fresh_graduate": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 0,
+            "total_savings_cn": "省部级孵化器OPC社区最高200万奖励 + 算力券最高1000万/年(口径待确认)",
+            "plus": "市级「六个一」体系 + 五大工程15条 + 2028年目标(OPC社区100+/卓越10+/千万营收100家/高成长5000+/人才30000+)"
+          }
+        },
+        {
+          "id": "hz-011",
+          "name_cn": "杭州市市场监管局支持一人公司OPC创新创业发展的若干举措(新华网·新闻解读)",
+          "name_en": "Hangzhou 12 Measures Supporting OPC Development (Xinhua News Interpretation)",
+          "district": "全市",
+          "benefit_cn": "12项举措新闻解读要点(2026年4月16日市市场监管局发布):一址多照+工位注册「一张桌子开公司」;「陪伴式」成长服务(登记/许可/合规/标准/资质/专利全程指导)+编制「入市陪伴手册」;专利审查绿色通道+优先审查;OPC专属「信用账户」让信用「当钱用」+银企对接;沙盒监管1—3年成长空间(行政指导、风险提示为主);首违不罚、轻微免罚;降低新设OPC「双随机」抽查比重,信用良好「无事不扰」;支持短暂休眠(歇业/恢复)。参考数据:杭州信息传输/软件和信息技术服务业+科研和技术服务业中1—2个自然人股东的有限公司及个体工商户共计27.3万家",
+          "benefit_en": "12-measure news interpretation (released 2026-04-16): multi-address workstation registration 'one desk opens a company'; 'companion-style' growth service + 'market-entry companion handbook'; patent green channel & priority review; OPC credit account 'credit as money' + bank-enterprise matching; sandbox supervision 1-3yr; first-violation-no-penalty; reduced 'dual-random' inspection for good-credit OPC; dormancy support. Reference: Hangzhou IT/software + scientific/technical services firms with 1-2 natural-person shareholders = 273,000.",
+          "requirements_cn": "OPC创业模式(AI协同下自然人或小规模团队完成全链路业务闭环);组织形式含公司、个人独资企业、个体工商户;走访6个城区多家OPC园区后制定",
+          "requirements_en": "OPC model (AI-assisted natural person/small team full-loop business); org forms: company, sole proprietorship, individual business; drafted after visiting OPC parks in 6 districts.",
+          "source_url": "http://zj.news.cn/20260418/e2ffcdf1136c43c3a456fe80ff38eaa8/c.html",
+          "source_label": "新华网·杭州推出12项举措支持OPC发展(转潮新闻,记者唐骏垚)",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "degree_min": "none",
+            "graduation_years_max": null,
+            "district": [
+              "全市"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": false,
+            "needs_aliyun": false,
+            "overseas_degree": false,
+            "min_registered_capital": null,
+            "fresh_graduate": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 0,
+            "total_savings_cn": "制度型政策(非直接资金补贴);降低准入/合规/知识产权/信用融资制度成本;沙盒监管1—3年观察期",
+            "plus": "信用「当钱用」+ 专利优先审查 + 「入市陪伴手册」 + 降低双随机抽查"
+          }
+        },
+        {
+          "id": "hz-012",
+          "name_cn": "杭州:「一人公司」风乍起(OPC生态综述)",
+          "name_en": "Hangzhou: 'One Person Company' Wind Rises (OPC Ecosystem Overview)",
+          "district": "全市(上城/萧山/余杭/滨江/西湖)",
+          "benefit_cn": "多区OPC社区与政策汇总(2026年6月28日新华每日电讯):上城区青聚枢纽·未来数智港(引进超1000万用户的WaytoAGI开源社区+低成本公寓+AI智能体工具包+场景对接会+OPC场景共创实战营);上城区为社区内OPC配发「AI智能体工具包」并提供低成本公寓;滨江区西兴街道滨和启梦空间「AI+OPC」社区(「楼上居住、楼下办公」住创一体模式);余杭区模域空间(区政府与阿里巴巴集团合作共建,首批入驻同济空间/童仁智能等算力代表企业+埃森哲/析引力数据代表+翊奇科技/鸿欢网络模型智能体代表);西湖区「云谷中心」与「魔搭社区」共建开发者中心(2025年11月揭牌,首期面积超1万平米;创业社区「Y/OUR SPACE杭州云谷站」已有180位OPC开发者入驻;魔搭社区线上汇聚19万大模型+3万余数据集);杭州市科技局12条政策措施(真金白银投入);行动计划目标2028年OPC社区100+、卓越级10+、营收超千万100家、高成长性5000+、人才30000+;杭州AI核心产业一季度营收1229亿元(+25.2%);机器人企业700+,四足机器人国内份额80%、人形机器人50%",
+          "benefit_en": "Multi-district OPC overview (Jun 28, 2026 Xinhua): Shangcheng Qingju Hub Future Digital-Intelligence Port (WaytoAGI 10M+ users, low-cost apartments, AI agent toolkit, scenario matchmaking); Binjiang Xixing Binhe Qimeng Space (live-above-work-below); Yuhang 'Model Domain Space' (gov+Alibaba, compute/data/model tenants); Xihu 'Cloud Valley Center'+ModelScope dev center (10K+ sqm, 180 OPC devs, 190K models/30K datasets); Hangzhou Sci-Tech Bureau 12 measures; 2028 goals (100+ communities/10+ excellent/100 firms >¥10M/5000+ high-growth/30000+ talent); Q1 AI core revenue ¥122.9B (+25.2%); 700+ robot firms; quadruped 80%, humanoid 50% domestic share.",
+          "requirements_cn": "杭州争创人工智能创新发展第一城;全国青年发展型城市首批试点;2025年新引进青年大学生42.9万人,人才净流入率多年全国前列;首届「AI+OPC」创新发展大会6月29—30日在杭举行",
+          "requirements_en": "Hangzhou competing for national AI innovation first city; national youth-development city pilot; 429K young university grads newly introduced 2025; net talent inflow top nationally for years; 1st 'AI+OPC' Innovation Conference Jun 29-30 in Hangzhou.",
+          "source_url": "https://www.news.cn/local/20260628/00f56b42570b421dbe6eb8ab285f6515/c.html",
+          "source_label": "新华网·杭州一人公司风乍起(新华每日电讯,记者邬焕庆张璇)",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "degree_min": "none",
+            "graduation_years_max": null,
+            "district": [
+              "全市",
+              "上城区",
+              "萧山区",
+              "余杭区",
+              "滨江区",
+              "西湖区"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": false,
+            "needs_aliyun": false,
+            "overseas_degree": false,
+            "min_registered_capital": null,
+            "fresh_graduate": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "综述报道(非独立资金政策);各区社区提供低成本公寓/共享空间(具体免租期因社区而异)",
+            "plus": "上城区AI智能体工具包 + 模域空间算力生态 + 云谷中心1万平米开发者空间 + 行动计划2028目标(OPC社区100+)"
+          }
+        },
+        {
+          "id": "hz-013",
+          "name_cn": "杭州「一人公司」养成记:热潮之下,生态兴起(上城/余杭政策与社区)",
+          "name_en": "Hangzhou OPC Cultivation: Ecosystem Rising (Shangcheng/Yuhang Policies & Communities)",
+          "district": "上城区·余杭区",
+          "benefit_cn": "上城区《支持人工智能OPC社区建设若干措施》(浙江省首个区级OPC专项政策,覆盖空间/要素/金融/场景/人才/产业链):OPC专项基金总规模10亿元(重点投向早期、硬科技项目);每年择优评选「超级个体」给予奖励最高20万元+优先推荐认定为杭州市高层次人才;2026年目标建设OPC社区10个、培育AI企业100家、集聚OPC创业者1000名;「两个一百」支撑计划(发布场景机会100个+举办OPC品牌活动100场);AI智能体工具会员池供给模式(整合优质模型/算力/工具/智能体为一体服务包);上城资本集聚优势。余杭区「数栖八条」专项政策(2025年已发布):拎包入驻+最高300万元研发费用及物业能耗、模型算力等全方位支持。数栖湾产业社区:自2025年9月启用,对接700余位超级个体,选出80余组AI+创业项目,今年将新开杭创(人工智能)营;构建「一核两翼」孵化体系(核心0→1萌发+数栖杭创营1→10孵化陪跑+数栖创新中心10→∞规模化)",
+          "benefit_en": "Shangcheng 'Measures Supporting AI OPC Community Construction' (Zhejiang's first district-level OPC policy, covering space/elements/finance/scenario/talent/chain): OPC fund ¥1B (early + hard-tech); annual 'super-individual' up to ¥200K + priority Hangzhou high-level talent recommendation; 2026 goals (10 communities/100 AI firms/1000 OPC founders); 'Two Hundreds' (100 scenario opportunities + 100 brand events); AI agent tool member-pool supply model. Yuhang 'Shuqi Eight Articles' (published 2025): turnkey move-in + up to ¥3M R&D/property-energy/model-compute support. Shuqiwan: since 2025-09, 700+ super-individuals, 80+ AI+ projects, 'one-core-two-wings' incubation (0→1 + 1→10 + 10→∞).",
+          "requirements_cn": "上城区:OPC创业者(投人逻辑,核心个体);余杭区数栖湾:需提供初步商业计划书经综合评估+良渚新城管委会统一组织AI+产业项目路演,通过后正式入驻;数栖湾项目筛选评估后列入优质项目库",
+          "requirements_en": "Shangcheng: OPC founders (invest-in-person logic, core individual); Yuhang Shuqiwan: submit preliminary business plan for comprehensive assessment + Liangzhu New City管委会-organized AI+ project roadshow, pass to formally enter; Shuqiwan screens into quality project pool.",
+          "source_url": "https://www.21jingji.com/article/20260320/herald/cace6b8d46f73edc8f8402d52ba85ac3.html",
+          "source_label": "21世纪经济报道·杭州一人公司养成记热潮之下生态兴起(记者柳宁馨)",
+          "verified": true,
+          "updated": "2026-08-09",
+          "match_rules": {
+            "degree_min": "none",
+            "graduation_years_max": null,
+            "district": [
+              "上城区",
+              "余杭区"
+            ],
+            "opc_eligible": true,
+            "ai_preferred": true,
+            "needs_business_plan": true,
+            "needs_aliyun": false,
+            "overseas_degree": false,
+            "min_registered_capital": null,
+            "fresh_graduate": false
+          },
+          "estimated_benefit": {
+            "rent_free_months": null,
+            "monthly_market_rent": 3000,
+            "total_savings_cn": "上城区:超级个体最高20万 + 10亿OPC专项基金;余杭数栖八条:最高300万元研发/物业/算力支持",
+            "plus": "上城「两个一百」(场景100+活动100) + AI智能体工具会员池 + 高层次人才优先推荐;数栖湾「一核两翼」全周期孵化 + 拎包入驻"
+          }
+        }
+      ],
+      "communities": [
+        {
+          "id": "c-001",
+          "name_cn": "梦想小镇",
+          "name_en": "Dream Town",
+          "district": "余杭区·未来科技城·仓前",
+          "operator_cn": "湖畔良仓",
+          "operator_en": "Hupan Liangcang",
+          "rent_free_cn": "6 个月",
+          "rent_free_en": "6 months",
+          "incubated_count": "近 4000",
+          "contact": "400-0057-121",
+          "website": "https://hupanliangcang.com",
+          "focus_cn": "互联网创业、AI、软件",
+          "focus_en": "Internet, AI, software",
+          "accepts_opc": "待确认",
+          "verified": true
+        },
+        {
+          "id": "c-002",
+          "name_cn": "余杭仓前 OPC 社区",
+          "name_en": "Yuhang Cangqian OPC Community",
+          "district": "余杭区·仓前",
+          "operator_cn": "余杭区引导",
+          "operator_en": "Yuhang District guided",
+          "rent_free_cn": "免房租",
+          "rent_free_en": "Rent-free",
+          "incubated_count": "—",
+          "contact": "待查询",
+          "website": "待查询",
+          "focus_cn": "AI + 一人公司",
+          "focus_en": "AI + one-person company",
+          "accepts_opc": "是",
+          "verified": true
+        },
+        {
+          "id": "c-003",
+          "name_cn": "良仓太炎众创",
+          "name_en": "Liangcang Taiyan Maker Space",
+          "district": "余杭区·梦想小镇体系",
+          "operator_cn": "湖畔良仓体系",
+          "operator_en": "Hupan Liangcang system",
+          "rent_free_cn": "免租期",
+          "rent_free_en": "Rent-free period",
+          "incubated_count": "—",
+          "contact": "400-0057-121",
+          "website": "待查询",
+          "focus_cn": "众创空间,门槛低",
+          "focus_en": "Maker space, low barrier",
+          "accepts_opc": "待确认",
+          "verified": true
+        },
+        {
+          "id": "c-004",
+          "name_cn": "天堂软件园 OPC",
+          "name_en": "Paradise Software Park OPC",
+          "district": "滨江区",
+          "operator_cn": "天堂软件园",
+          "operator_en": "Paradise Software Park",
+          "rent_free_cn": "免房租",
+          "rent_free_en": "Rent-free",
+          "incubated_count": "—",
+          "contact": "待查询",
+          "website": "待查询",
+          "focus_cn": "软件 + OPC",
+          "focus_en": "Software + OPC",
+          "accepts_opc": "是",
+          "verified": true
+        }
+      ],
+      "talent_subsidies": [
+        {
+          "id": "ts-001",
+          "name_cn": "余杭区 F 类人才租房补贴",
+          "name_en": "Yuhang District F-Class Talent Rent Subsidy",
+          "district": "余杭区",
+          "benefit_cn": "租房补贴 ¥800-1200/月,最长 3 年",
+          "benefit_en": "Rent subsidy ¥800-1200/month, up to 3 years",
+          "requirements_cn": "硕士学历 → F 类人才认定(非 E 类)",
+          "requirements_en": "Master's degree → F-class talent (not E-class)",
+          "source_url": "https://www.hzzx.gov.cn/cshz/content/2026-03/12/content_9190095_2.htm",
+          "source_label": "杭州市政府·人才政策",
+          "verified": true,
+          "match_rules": {
+            "degree_min": "master",
+            "talent_class": "F",
+            "district": [
+              "余杭区"
+            ],
+            "max_duration_months": 36,
+            "monthly_subsidy_min": 800,
+            "monthly_subsidy_max": 1200
+          },
+          "estimated_benefit": {
+            "monthly_subsidy": 1000,
+            "months": 36,
+            "total_savings_cn": "约 ¥36,000(3年租房补贴,以¥1000/月估算)"
+          }
+        },
+        {
+          "id": "ts-002",
+          "name_cn": "杭州应届高学历毕业生生活补贴",
+          "name_en": "Hangzhou Fresh Graduate Living Subsidy",
+          "district": "全市",
+          "benefit_cn": "硕士 ¥3 万(应届窗口),满 3 年再发 ¥3 万",
+          "benefit_en": "Master's ¥30K (fresh graduate window), another ¥30K after 3 years",
+          "requirements_cn": "应届毕业(有窗口期限制)+ 硕士及以上",
+          "requirements_en": "Fresh graduate (within window) + master's or above",
+          "source_url": "https://www.hzzx.gov.cn/cshz/content/2026-03/26/content_9197297.htm",
+          "source_label": "杭州市政府·人才政策",
+          "verified": true,
+          "match_rules": {
+            "degree_min": "master",
+            "fresh_graduate": true,
+            "district": [
+              "全市"
+            ]
+          },
+          "estimated_benefit": {
+            "lump_sum_1": 30000,
+            "lump_sum_2_after_3y": 30000,
+            "total_savings_cn": "约 ¥60,000(应届硕士3万+满3年再3万)"
+          }
+        },
+        {
+          "id": "ts-003",
+          "name_cn": "余杭区留学生创业资助",
+          "name_en": "Yuhang District Overseas Returnee Startup Grant",
+          "district": "余杭区",
+          "benefit_cn": "2026 新版 ¥20-100 万留创资助",
+          "benefit_en": "2026 updated ¥200K-1M returnee startup grant",
+          "requirements_cn": "海外学历 + 注册资本门槛 ¥100 万",
+          "requirements_en": "Overseas degree + registered capital threshold ¥100K",
+          "source_url": "https://www.hzzx.gov.cn/cshz/content/2026-03/12/content_9190095_2.htm",
+          "source_label": "杭州市政府·人才政策",
+          "verified": true,
+          "match_rules": {
+            "overseas_degree": true,
+            "min_registered_capital": 1000000,
+            "district": [
+              "余杭区"
+            ]
+          },
+          "estimated_benefit": {
+            "grant_min": 200000,
+            "grant_max": 1000000,
+            "total_savings_cn": "¥20-100 万(视项目评审而定)"
+          }
+        }
+      ]
+    }
+  ],
+  "source_log": [
+    "所有政策条目均附政府官方/园区公告/公开新闻来源链接",
+    "未验证条目标注 verified:false",
+    "缺失官链时标注参考来源,不冒充官方"
+  ]
+}

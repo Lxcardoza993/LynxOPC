@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>杭州 OPC 详情 — 余杭区 | LynxOPC</title>
+<meta name="description" content="杭州一人公司(OPC)政策与社区详情,聚焦余杭区梦想小镇、仓前 OPC 社区、阿里云 OPC 计划。数据来自公开政策源。">
+<style>
+:root{
+--serif:Georgia,'Times New Roman','Songti SC','STSong','SimSun',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+--bg:#15120c;
+--panel:#1c1811;
+--panel2:#242017;
+--ink:#ede3cd;
+--muted:#ab9f85;
+--faint:#8a8168;
+--line:#3a3325;
+--line-soft:#2b261b;
+--accent:#e98a5f;
+--gold:#d8b26a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.masthead{max-width:800px;margin:0 auto;padding:14px 20px}
+.util{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.util .date{font-variant:small-caps;letter-spacing:.12em}
+.util a.back{margin-left:auto;color:var(--muted);font-variant:small-caps;letter-spacing:.08em}
+
+.wordmark{text-align:center;padding:18px 0 6px}
+.wordmark h1{font-family:var(--serif);font-size:32px;font-weight:700}
+.wordmark h1 .dot{color:var(--accent)}
+.wordmark .motto{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-top:4px}
+.masthead-rule{height:5px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:18px 0 0}
+
+.detail{max-width:800px;margin:0 auto;padding:24px 20px 40px}
+.detail h2{font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:6px}
+.detail .kicker{font-size:11px;letter-spacing:.34em;color:var(--accent);font-variant:small-caps;font-weight:600}
+.detail .lead{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:15px;margin:6px 0 20px}
+
+.detail-section{margin-bottom:28px}
+.detail-section h3{font-family:var(--serif);font-size:18px;font-weight:700;border-top:2px solid var(--ink);padding-top:14px;margin-bottom:10px}
+.detail-section .sec-kicker{font-size:11px;letter-spacing:.34em;color:var(--accent);font-variant:small-caps;font-weight:600;display:block;margin-bottom:2px}
+
+.policy-entry{background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;padding:14px 18px;margin-bottom:12px}
+.policy-entry .pe-no{font-size:11px;color:var(--faint);font-variant:small-caps;letter-spacing:.12em}
+.policy-entry h4{font-family:var(--serif);font-size:17px;font-weight:700;margin:3px 0 4px}
+.policy-entry .pe-district{font-size:12px;color:var(--accent);margin-bottom:6px}
+.policy-entry .pe-row{font-size:13.5px;color:var(--muted);margin-bottom:4px}
+.policy-entry .pe-row b{color:var(--ink);font-weight:600}
+.policy-entry .pe-src{font-size:11.5px;color:var(--faint);margin-top:8px}
+
+.community-entry{background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;padding:14px 18px;margin-bottom:12px}
+.community-entry h4{font-family:var(--serif);font-size:17px;font-weight:700;margin-bottom:6px}
+.community-entry .ce-row{font-size:13.5px;color:var(--muted);margin-bottom:4px}
+.community-entry .ce-row b{color:var(--ink);font-weight:600}
+.community-entry .ce-contact{font-size:13px;color:var(--accent);margin-top:6px}
+
+.disclaimer{background:var(--panel2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:24px;font-size:13px;color:var(--muted)}
+.disclaimer b{color:var(--gold)}
+
+footer{text-align:center;padding:30px 20px;border-top:1px solid var(--line);color:var(--faint);font-size:.78em}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="util">
+    <span class="date" id="todayDate"></span>
+    <a class="back" href="../index.html">← 返回首页</a>
+  </div>
+  <div class="wordmark">
+    <h1>杭州 <span class="dot">·</span> 余杭</h1>
+    <p class="motto">Hangzhou · Yuhang — OPC 政策与社区详情</p>
+  </div>
+  <div class="masthead-rule" role="presentation"></div>
+</div>
+
+<div class="detail" id="detailContent">
+  <span class="kicker">城市详情</span>
+  <h2>杭州 Hangzhou</h2>
+  <p class="lead">余杭区为核心阵地:梦想小镇(6个月免租)、仓前 OPC 社区(全球英雄帖)、阿里云 OPC 创新计划。全市统筹免房租 + 创业资金扶持。</p>
+
+  <div class="detail-section">
+    <span class="sec-kicker">§ 01</span>
+    <h3>政策条目</h3>
+    <div id="policyList"></div>
+  </div>
+
+  <div class="detail-section">
+    <span class="sec-kicker">§ 02</span>
+    <h3>社区 / 孵化器</h3>
+    <div id="communityList"></div>
+  </div>
+
+  <div class="disclaimer">
+    <b>数据声明:</b>所有政策条目均附政府官方/园区公告/公开新闻来源链接。标注"待确认"的字段(如梦想小镇是否接受一人公司)需致电园区核实。本站不提供投资/法律建议,入驻前请直接联系园区确认最新政策。
+  </div>
+</div>
+
+<footer>
+  <p>LynxOPC · 数据来自公开政策源 · 缺失官链时明示参考来源 · 拒绝 AI 编造</p>
+  <p style="margin-top:4px"><a href="../index.html">首页</a> · <a href="../compare.html">对比工具</a> · <a href="../data/opc.json">JSON API</a> · <a href="../rss.xml">RSS</a></p>
+</footer>
+
+<script>
+async function loadData(){
+  const resp=await fetch('../data/opc.json');
+  const DATA=await resp.json();
+  const city=DATA.cities[0];
+  const today=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('todayDate').textContent=today;
+
+  document.getElementById('policyList').innerHTML=city.policies.map((p,i)=>`
+    <div class="policy-entry">
+      <span class="pe-no">No. ${String(i+1).padStart(3,'0')}</span>
+      <h4>${esc(p.name_cn)} <span style="font-size:13px;color:var(--faint);font-family:var(--sans)">${esc(p.name_en)}</span></h4>
+      <div class="pe-district">📍 ${esc(p.district)}</div>
+      <div class="pe-row"><b>福利:</b> ${esc(p.benefit_cn)}</div>
+      <div class="pe-row"><b>要求:</b> ${esc(p.requirements_cn)}</div>
+      <div class="pe-src">↗ <a href="${p.source_url}" target="_blank" rel="noopener">${esc(p.source_label)}</a> · 更新 ${p.updated}</div>
+    </div>`).join('');
+
+  document.getElementById('communityList').innerHTML=city.communities.map((c,i)=>`
+    <div class="community-entry">
+      <h4>${esc(c.name_cn)} <span style="font-size:13px;color:var(--faint);font-family:var(--sans)">${esc(c.name_en)}</span></h4>
+      <div class="ce-row"><b>区位:</b> ${esc(c.district)}</div>
+      <div class="ce-row"><b>运营:</b> ${esc(c.operator_cn)}</div>
+      <div class="ce-row"><b>免租:</b> ${esc(c.rent_free_cn)}</div>
+      <div class="ce-row"><b>方向:</b> ${esc(c.focus_cn)}</div>
+      <div class="ce-row"><b>接受 OPC:</b> ${esc(c.accepts_opc)}</div>
+      ${c.incubated_count!=='—'?`<div class="ce-row"><b>已孵化:</b> ${esc(c.incubated_count)} 项目</div>`:''}
+      ${c.contact?`<div class="ce-contact">☎ ${esc(c.contact)}</div>`:''}
+    </div>`).join('');
+}
+
+function esc(s){return s.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));}
+loadData();
+</script>
+</body>
+</html>

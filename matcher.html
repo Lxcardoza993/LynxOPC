@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>入驻匹配器 — LynxOPC</title>
+<meta name="description" content="输入你的条件,自动匹配杭州 OPC 政策和人才补贴,估算 3 年总收益。">
+<style>
+:root{
+--serif:Georgia,'Times New Roman','Songti SC','STSong','SimSun',serif;
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+--bg:#15120c;
+--panel:#1c1811;
+--panel2:#242017;
+--ink:#ede3cd;
+--muted:#ab9f85;
+--faint:#8a8168;
+--line:#3a3325;
+--line-soft:#2b261b;
+--accent:#e98a5f;
+--accent-deep:#c96a42;
+--gold:#d8b26a;
+--chip-ink:#15120c;
+--green:#6b9f5e;
+--red:#c95d5d;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.masthead{max-width:860px;margin:0 auto;padding:14px 20px}
+.util{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.util .date{font-variant:small-caps;letter-spacing:.12em}
+.util a.back{margin-left:auto;color:var(--muted);font-variant:small-caps;letter-spacing:.08em}
+
+.wordmark{text-align:center;padding:18px 0 6px}
+.wordmark h1{font-family:var(--serif);font-size:32px;font-weight:700}
+.wordmark h1 .dot{color:var(--accent)}
+.wordmark .motto{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-top:4px}
+.masthead-rule{height:5px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:18px 0 0}
+
+.matcher{max-width:860px;margin:0 auto;padding:24px 20px 40px}
+.matcher h2{font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:6px}
+.matcher .kicker{font-size:11px;letter-spacing:.34em;color:var(--accent);font-variant:small-caps;font-weight:600}
+.matcher .lead{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:15px;margin:6px 0 24px}
+
+/* Form */
+.form-panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px 28px;margin-bottom:28px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:13px;color:var(--muted);font-variant:small-caps;letter-spacing:.08em}
+.form-group select,.form-group input{
+  background:var(--panel2);border:1px solid var(--line);color:var(--ink);
+  padding:10px 14px;border-radius:6px;font-family:var(--sans);font-size:14px;
+}
+.form-group select:focus,.form-group input:focus{border-color:var(--accent);outline:none}
+.radio-group{display:flex;gap:10px;flex-wrap:wrap}
+.radio-chip{background:var(--panel2);border:1px solid var(--line);color:var(--muted);padding:7px 16px;border-radius:999px;cursor:pointer;font-size:13px;transition:all .15s}
+.radio-chip:hover{color:var(--accent);border-color:var(--accent)}
+.radio-chip.active{color:var(--chip-ink);background:var(--accent);border-color:var(--accent)}
+
+.btn-match{display:block;width:100%;background:var(--accent);color:var(--chip-ink);border:none;padding:14px;border-radius:8px;font-family:var(--serif);font-size:18px;font-weight:700;cursor:pointer;margin-top:20px;transition:background .15s}
+.btn-match:hover{background:var(--accent-deep)}
+
+/* Results */
+.results{display:none}
+.results.visible{display:block;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+
+.summary-card{background:var(--panel);border:2px solid var(--gold);border-radius:10px;padding:24px 28px;margin-bottom:24px}
+.summary-card .kicker{font-size:11px;letter-spacing:.34em;color:var(--gold);font-variant:small-caps;font-weight:600}
+.summary-card h3{font-family:var(--serif);font-size:28px;font-weight:700;margin:4px 0 12px}
+.summary-card .total-num{font-family:var(--serif);font-size:42px;font-weight:700;color:var(--accent)}
+.summary-card .total-label{font-size:12px;color:var(--faint);font-variant:small-caps;letter-spacing:.1em}
+.summary-card .breakdown{margin-top:16px;display:grid;grid-template-columns:1fr;gap:8px}
+.summary-card .bd-row{display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid var(--line-soft)}
+.summary-card .bd-row:last-child{border-bottom:none;font-weight:700}
+.summary-card .bd-row .bd-label{color:var(--muted)}
+.summary-card .bd-row .bd-val{color:var(--ink);font-family:var(--serif)}
+.summary-card .bd-row.highlight .bd-val{color:var(--accent)}
+
+.match-list{display:grid;gap:16px}
+.match-item{background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;padding:18px 20px;border-left:3px solid var(--accent)}
+.match-item.blocked{border-left-color:var(--red);opacity:.7}
+.match-item .mi-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.match-item .mi-status{font-size:11px;padding:2px 10px;border-radius:999px;font-variant:small-caps;letter-spacing:.06em}
+.match-item .mi-status.match{background:var(--accent);color:var(--chip-ink)}
+.match-item .mi-status.block{background:var(--red);color:var(--chip-ink)}
+.match-item h4{font-family:var(--serif);font-size:18px;font-weight:700;flex:1}
+.match-item .mi-benefit{font-size:14px;color:var(--muted);margin:6px 0}
+.match-item .mi-benefit b{color:var(--ink);font-weight:600}
+.match-item .mi-saving{font-size:13px;color:var(--gold);margin-top:6px}
+.match-item .mi-blockreason{font-size:12px;color:var(--red);margin-top:6px}
+.match-item .mi-src{font-size:11.5px;color:var(--faint);margin-top:8px}
+
+.disclaimer{background:var(--panel2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px;margin-top:24px;font-size:13px;color:var(--muted)}
+.disclaimer b{color:var(--gold)}
+
+@media(max-width:640px){.form-grid{grid-template-columns:1fr}.summary-card .total-num{font-size:32px}}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="util">
+    <span class="date" id="todayDate"></span>
+    <a class="back" href="index.html">← 返回首页</a>
+  </div>
+  <div class="wordmark">
+    <h1>入驻<span class="dot">·</span>匹配器</h1>
+    <p class="motto">Intake Matcher — 你能拿多少补贴?</p>
+  </div>
+  <div class="masthead-rule" role="presentation"></div>
+</div>
+
+<div class="matcher">
+  <span class="kicker">决策工具</span>
+  <h2>OPC 入驻匹配器</h2>
+  <p class="lead">输入你的条件,自动匹配杭州 OPC 政策 + 人才补贴,估算 3 年总收益。</p>
+
+  <div class="form-panel">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>学历 Degree</label>
+        <select id="fDegree">
+          <option value="bachelor">本科 Bachelor</option>
+          <option value="master" selected>硕士 Master</option>
+          <option value="phd">博士 PhD</option>
+          <option value="other">其他 Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>毕业年限 Years since graduation</label>
+        <select id="fGradYear">
+          <option value="0">应届 / 1 年内</option>
+          <option value="3">1-3 年</option>
+          <option value="5">3-5 年</option>
+          <option value="8">5-8 年</option>
+          <option value="10">8-10 年</option>
+          <option value="99">10 年以上</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>公司注册地 Current registration district</label>
+        <select id="fRegDistrict">
+          <option value="余杭区">余杭区</option>
+          <option value="滨江区">滨江区</option>
+          <option value="西湖区">西湖区</option>
+          <option value="钱塘区" selected>钱塘区</option>
+          <option value="拱墅区">拱墅区</option>
+          <option value="上城区">上城区</option>
+          <option value="none">未注册 / 准备注册</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>创业方向 Direction</label>
+        <div class="radio-group">
+          <span class="radio-chip active" data-val="ai" onclick="setRadio(this,'fDirection')">AI</span>
+          <span class="radio-chip" data-val="software" onclick="setRadio(this,'fDirection')">软件</span>
+          <span class="radio-chip" data-val="other" onclick="setRadio(this,'fDirection')">其他</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>公司类型 Company type</label>
+        <div class="radio-group">
+          <span class="radio-chip active" data-val="opc" onclick="setRadio(this,'fCompanyType')">一人公司 OPC</span>
+          <span class="radio-chip" data-val="multi" onclick="setRadio(this,'fCompanyType')">多人股东</span>
+        </div>
+      </div>
+      <div class="form-group full">
+        <label>海外学历 Overseas degree?</label>
+        <div class="radio-group">
+          <span class="radio-chip" data-val="yes" onclick="setRadio(this,'fOverseas')">是</span>
+          <span class="radio-chip active" data-val="no" onclick="setRadio(this,'fOverseas')">否</span>
+        </div>
+      </div>
+      <div class="form-group full">
+        <label>注册资本(意向) Registered capital</label>
+        <select id="fCapital">
+          <option value="0">未定 / ¥10 万以下</option>
+          <option value="50">¥10-50 万</option>
+          <option value="100">¥50-100 万</option>
+          <option value="500">¥100 万以上</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>是否愿意迁址? Willing to relocate?</label>
+        <div class="radio-group">
+          <span class="radio-chip active" data-val="yes" onclick="setRadio(this,'fRelocate')">是,愿意迁</span>
+          <span class="radio-chip" data-val="no" onclick="setRadio(this,'fRelocate')">否,留原区</span>
+        </div>
+      </div>
+    </div>
+    <button class="btn-match" onclick="runMatch()">▸ 匹配政策 & 估算收益</button>
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <div class="disclaimer">
+    <b>数据声明:</b>匹配结果基于公开政策数据估算,仅供参考。实际补贴金额、入驻资格以园区/政府部门官方审核为准。"待确认"项需致电园区核实。本工具不提供投资/法律建议。
+  </div>
+</div>
+
+<footer style="text-align:center;padding:30px 20px;border-top:1px solid var(--line);color:var(--faint);font-size:.78em">
+  <p>LynxOPC · 数据来自公开政策源 · 不编造</p>
+  <p style="margin-top:4px"><a href="index.html">首页</a> · <a href="cities/hangzhou.html">杭州详情</a> · <a href="compare.html">对比工具</a> · <a href="data/opc.json">JSON API</a></p>
+</footer>
+
+<script>
+let DATA=null;
+const formState={fDirection:'ai',fCompanyType:'opc',fOverseas:'no',fRelocate:'yes'};
+
+async function loadData(){
+  const resp=await fetch('data/opc.json');
+  DATA=await resp.json();
+  const today=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('todayDate').textContent=today;
+}
+
+function setRadio(el,field){
+  document.querySelectorAll(`[data-val][onclick*="${field}"]`).forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  formState[field]=el.dataset.val;
+}
+
+function esc(s){return String(s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));}
+
+const DEGREE_RANK={other:0,bachelor:1,master:2,phd:3};
+
+function runMatch(){
+  if(!DATA)return;
+  const city=DATA.cities[0];
+  const degree=document.getElementById('fDegree').value;
+  const gradYear=parseInt(document.getElementById('fGradYear').value);
+  const regDistrict=document.getElementById('fRegDistrict').value;
+  const direction=formState.fDirection;
+  const companyType=formState.fCompanyType;
+  const overseas=formState.fOverseas==='yes';
+  const capital=parseInt(document.getElementById('fCapital').value);
+  const relocate=formState.fRelocate==='yes';
+
+  // 目标区 = 愿意迁→余杭优先, 不迁→原区
+  const targetDistrict=relocate?'余杭区':regDistrict;
+  const districtList=[targetDistrict,'全市'];
+
+  const matches=[];
+  const blocked=[];
+  let totalSavings=0;
+
+  // 匹配 policies
+  city.policies.forEach(p=>{
+    const r=p.match_rules||{};
+    const b=p.estimated_benefit||{};
+    let ok=true;
+    let reasons=[];
+
+    // 学历门槛
+    if(r.degree_min&&DEGREE_RANK[degree]<DEGREE_RANK[r.degree_min]){
+      ok=false;reasons.push(`需${r.degree_min}以上学历`);
+    }
+    // 毕业年限
+    if(r.graduation_years_max!=null&&gradYear>r.graduation_years_max){
+      ok=false;reasons.push(`需毕业${r.graduation_years_max}年内`);
+    }
+    // 区域:政策区域需包含目标区或全市
+    if(r.district&&!r.district.some(d=>districtList.includes(d))){
+      ok=false;reasons.push(`仅在${r.district.join('/')}`);
+    }
+    // 一人公司
+    if(r.opc_eligible&&companyType!=='opc'){
+      // 不 block,只是提醒
+    }
+
+    const item={
+      name:p.name_cn,
+      name_en:p.name_en,
+      benefit:p.benefit_cn,
+      saving:b.total_savings_cn||'—',
+      source_url:p.source_url,
+      source_label:p.source_label,
+      ok,reasons:reasons.join('; ')
+    };
+
+    if(ok){matches.push(item);}
+    else{blocked.push(item);}
+  });
+
+  // 匹配 talent_subsidies
+  if(city.talent_subsidies){
+    city.talent_subsidies.forEach(t=>{
+      const r=t.match_rules||{};
+      const b=t.estimated_benefit||{};
+      let ok=true;
+      let reasons=[];
+
+      if(r.degree_min&&DEGREE_RANK[degree]<DEGREE_RANK[r.degree_min]){
+        ok=false;reasons.push(`需${r.degree_min}以上学历`);
+      }
+      if(r.district&&!r.district.some(d=>districtList.includes(d))){
+        ok=false;reasons.push(`仅在${r.district.join('/')}`);
+      }
+      if(r.overseas_degree&&!overseas){
+        ok=false;reasons.push(`需海外学历`);
+      }
+      if(r.fresh_graduate&&gradYear>0){
+        ok=false;reasons.push(`需应届(1年内)`);
+      }
+      if(r.min_registered_capital&&capital<r.min_registered_capital/10000){
+        ok=false;reasons.push(`注册资本需≥¥${r.min_registered_capital/10000}万`);
+      }
+
+      const item={
+        name:t.name_cn,
+        name_en:t.name_en,
+        benefit:t.benefit_cn,
+        saving:b.total_savings_cn||'—',
+        source_url:t.source_url,
+        source_label:t.source_label,
+        ok,reasons:reasons.join('; '),
+        isTalent:true
+      };
+
+      if(ok){matches.push(item);}
+      else{blocked.push(item);}
+    });
+  }
+
+  // 计算总收益(从 saving 文本里提取 ¥后跟的数字,忽略美元/外币)
+  matches.forEach(m=>{
+    const nums=(m.saving.match(/¥[\d,]+/g)||[]).map(s=>parseInt(s.replace(/[¥,]/g,''))).filter(n=>!isNaN(n));
+    if(nums.length>0){totalSavings+=Math.max(...nums);}
+  });
+
+  renderResults(matches,blocked,totalSavings,targetDistrict);
+}
+
+function renderResults(matches,blocked,total,targetDistrict){
+  const el=document.getElementById('results');
+  el.classList.add('visible');
+
+  let breakdownHtml=matches.map(m=>{
+    const nums=(m.saving.match(/¥[\d,]+/g)||[]).map(s=>parseInt(s.replace(/[¥,]/g,''))).filter(n=>!isNaN(n));
+    const val=nums.length>0?`¥${Math.max(...nums).toLocaleString()}`:'—';
+    return `<div class="bd-row ${val!=='—'?'highlight':''}">
+      <span class="bd-label">${esc(m.name)}</span>
+      <span class="bd-val">${val}</span>
+    </div>`;
+  }).join('');
+
+  breakdownHtml+=`<div class="bd-row"><span class="bd-label">3 年估算总收益</span><span class="bd-val">¥${total.toLocaleString()}</span></div>`;
+
+  let matchHtml=matches.map(m=>`
+    <div class="match-item">
+      <div class="mi-head">
+        <span class="mi-status match">✓ 符合</span>
+        <h4>${esc(m.name)}</h4>
+      </div>
+      <div class="mi-benefit"><b>福利:</b> ${esc(m.benefit)}</div>
+      <div class="mi-saving">★ ${esc(m.saving)}</div>
+      <div class="mi-src">↗ <a href="${m.source_url}" target="_blank" rel="noopener">${esc(m.source_label)}</a></div>
+    </div>`).join('');
+
+  let blockHtml=blocked.length>0?`
+    <h3 style="font-family:var(--serif);font-size:18px;font-weight:700;margin:24px 0 12px;color:var(--muted)">不符合 / 需补充条件</h3>
+    ${blocked.map(m=>`
+    <div class="match-item blocked">
+      <div class="mi-head">
+        <span class="mi-status block">✗ 不符</span>
+        <h4 style="color:var(--muted)">${esc(m.name)}</h4>
+      </div>
+      <div class="mi-blockreason">原因: ${esc(m.reasons)}</div>
+      <div class="mi-benefit" style="color:var(--faint)"><b>福利:</b> ${esc(m.benefit)}</div>
+    </div>`).join('')}`:'';
+
+  el.innerHTML=`
+    <div class="summary-card">
+      <span class="kicker">匹配结果 · 目标区域 ${esc(targetDistrict)}</span>
+      <h3>你符合 ${matches.length} 项政策/补贴</h3>
+      <div class="total-num">¥${total.toLocaleString()}</div>
+      <div class="total-label">3 Year Estimated Total</div>
+      <div class="breakdown">${breakdownHtml}</div>
+    </div>
+    <h3 style="font-family:var(--serif);font-size:18px;font-weight:700;margin:24px 0 12px">符合的政策 & 补贴</h3>
+    <div class="match-list">${matchHtml}</div>
+    ${blockHtml}
+  `;
+}
+
+loadData();
+</script>
+</body>
+</html>

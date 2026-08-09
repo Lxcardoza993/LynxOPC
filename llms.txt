@@ -1,0 +1,35 @@
+# LynxOPC
+
+> LynxOPC is a ledger of One-Person Company (OPC) policies and communities in China.
+> All data is sourced from government public policy documents, official park announcements, and news reports — never AI-fabricated.
+
+## About
+
+LynxOPC aggregates publicly available OPC (一人公司) rent-free, subsidy, and incubation policies across Chinese cities. Currently focused on Hangzhou, especially Yuhang District.
+
+## What you'll find
+
+- Policy entries with benefit summaries, requirements, and official source links
+- Community/incubator profiles with contact info
+- City comparison tool
+- Open data: JSON API, RSS, llms.txt
+
+## Data
+
+- JSON API: https://lynxopc.com/data/opc.json
+- RSS: https://lynxopc.com/rss.xml
+
+## Pages
+
+- / — Home with city overview and policy/community cards
+- /cities/hangzhou.html — Hangzhou detail (Yuhang focus)
+- /compare.html — City comparison tool
+
+## Coverage
+
+Currently: Hangzhou (6 policies, 4 communities)
+Planned: Expand to more cities with verified public sources.
+
+## Source Principle
+
+Every policy entry links to its government/park/news source. Missing official links are labeled as reference sources, never fabricated.
