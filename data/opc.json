@@ -8,7 +8,7 @@
       "zh",
       "en"
     ],
-    "updated": "2026-08-09"
+    "updated": "2026-08-10"
   },
   "cities": [
     {
@@ -19,7 +19,7 @@
       "policy_count": 13,
       "community_count": 6,
       "max_subsidy_cn": "最高 1000 万元(滨江跟投)",
-      "updated": "2026-08-09",
+      "updated": "2026-08-10",
       "policies": [
         {
           "id": "hz-001",
@@ -457,10 +457,10 @@
           "district": "余杭区·良渚新城",
           "operator_cn": "良渚新城 + 杭创营 + 求是资本 + 火山引擎 + 阿里云",
           "operator_en": "Liangzhu New City + Hangchuang Camp + Qiushi Capital + Volcano Engine + Aliyun",
-          "rent_free_cn": "免租减免(期限需电话确认)",
-          "rent_free_en": "Rent reduction (confirm by phone)",
-          "incubated_count": "首批14家全部盈利(拓界科技千万级营收)",
-          "contact": "待查询(良渚新城管委会)",
+          "rent_free_cn": "300㎡以内免费空间(2026-08-08实地调研核实;免租期限需电话确认)",
+          "rent_free_en": "Free space up to 300sqm (verified on-site 2026-08-08; confirm duration by phone)",
+          "incubated_count": "首批14家全部盈利(拓界科技千万级营收);累计对接700+超级个体,筛出80+组AI+项目",
+          "contact": "0571-85251626(良渚新城管委会,08-08实地核实)",
           "website": "待查询",
           "focus_cn": "AIGC/AI+医疗/AI+硬件,浙江首个全要素OPC",
           "focus_en": "AIGC/AI+Healthcare/AI+Hardware, Zhejiang's first full-stack OPC",
@@ -468,6 +468,10 @@
           "verified": true,
           "highlights": [
             "浙江首个全要素OPC社区,首批14家企业全部实现营收",
+            "300㎡以内免费空间+每周2-3场活动(2026-08-08实地验证)",
+            "数栖八条专项政策:最高300万元研发/物业能耗/模型算力支持",
+            "10亿元专项基金;AI方向OPC月约2000元算力可抵扣",
+            "入驻需初步商业计划书+管委会统一组织AI+项目路演评审",
             "杭创AI营6个月深度陪跑(融资对接+产业场景匹配+创业教练)",
             "火山引擎+阿里云算力低价+免费部署智能体(能跑视频推理)",
             "OPC路演基金+天使基金补助+贷款贴息+投融资对接",
@@ -483,7 +487,7 @@
             "all_in_one_service"
           ],
           "recommendation_tier": 1,
-          "recommendation_reason": "创始人质量最实(14家全盈利)+投资对接最系统(杭创营6个月)+算力能跑视频+全要素护航"
+          "recommendation_reason": "创始人质量最实(14家全盈利)+投资对接最系统(杭创营6个月+10亿基金)+算力能跑视频+全要素护航+08-08实地验证(300㎡免费/每周2-3场活动)"
         },
         {
           "id": "c-006",
