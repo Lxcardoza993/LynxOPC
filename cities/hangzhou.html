@@ -125,17 +125,33 @@ async function loadData(){
       <div class="pe-src">↗ <a href="${p.source_url}" target="_blank" rel="noopener">${esc(p.source_label)}</a> · 更新 ${p.updated}</div>
     </div>`).join('');
 
-  document.getElementById('communityList').innerHTML=city.communities.map((c,i)=>`
-    <div class="community-entry">
-      <h4>${esc(c.name_cn)} <span style="font-size:13px;color:var(--faint);font-family:var(--sans)">${esc(c.name_en)}</span></h4>
+  // 社区按推荐分级排序(T1→T2→T3→无)
+  const sortedCommunities=[...city.communities].sort((a,b)=>{
+    const ta=a.recommendation_tier||99, tb=b.recommendation_tier||99;
+    return ta-tb;
+  });
+
+  document.getElementById('communityList').innerHTML=sortedCommunities.map((c,i)=>{
+    const tier=c.recommendation_tier;
+    const tierBadge=tier?`<span style="display:inline-block;font-size:11px;background:var(--accent);color:var(--chip-ink);padding:1px 8px;border-radius:999px;margin-left:8px;font-variant:small-caps;letter-spacing:.06em">推荐 T${tier}</span>`:'';
+    const tierBorder=tier===1?'border-left:3px solid var(--accent)':'';
+    const tierOpacity=tier===3?'opacity:.85':'';
+    const highlights=c.highlights?`<ul style="margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--muted)">${c.highlights.map(h=>`<li style="margin-bottom:2px">${esc(h)}</li>`).join('')}</ul>`:'';
+    const reason=c.recommendation_reason?`<div style="margin-top:8px;font-size:12px;color:var(--gold);border-top:1px solid var(--line-soft);padding-top:6px">★ ${esc(c.recommendation_reason)}</div>`:'';
+    return `
+    <div class="community-entry" style="${tierBorder};${tierOpacity}">
+      <h4>${esc(c.name_cn)} ${tierBadge}<span style="font-size:13px;color:var(--faint);font-family:var(--sans);display:block;margin-top:2px">${esc(c.name_en)}</span></h4>
       <div class="ce-row"><b>区位:</b> ${esc(c.district)}</div>
       <div class="ce-row"><b>运营:</b> ${esc(c.operator_cn)}</div>
       <div class="ce-row"><b>免租:</b> ${esc(c.rent_free_cn)}</div>
       <div class="ce-row"><b>方向:</b> ${esc(c.focus_cn)}</div>
       <div class="ce-row"><b>接受 OPC:</b> ${esc(c.accepts_opc)}</div>
-      ${c.incubated_count!=='—'?`<div class="ce-row"><b>已孵化:</b> ${esc(c.incubated_count)} 项目</div>`:''}
-      ${c.contact?`<div class="ce-contact">☎ ${esc(c.contact)}</div>`:''}
-    </div>`).join('');
+      ${c.incubated_count!=='—'&&c.incubated_count?`<div class="ce-row"><b>规模:</b> ${esc(c.incubated_count)}</div>`:''}
+      ${c.contact&&c.contact!=='待查询'&&c.contact!=='待查询(良渚新城管委会)'?`<div class="ce-contact">☎ ${esc(c.contact)}</div>`:''}
+      ${highlights}
+      ${reason}
+    </div>`;
+  }).join('');
 }
 
 function esc(s){return s.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));}

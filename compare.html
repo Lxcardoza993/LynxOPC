@@ -132,7 +132,7 @@ function renderTable(){
     {label:'最高补贴',getKey:c=>`<span class="gold">${esc(c.max_subsidy_cn||'—')}</span>`},
     {label:'社区数量',getKey:c=>`${c.communities.length} 个`},
     {label:'免租代表',getKey:c=>{const p=c.policies.find(p=>p.benefit_cn.includes('免租'));return p?`<span class="accent">${esc(p.benefit_cn)}</span>`:'—'}},
-    {label:'核心园区',getKey:c=>c.communities.slice(0,3).map(cm=>esc(cm.name_cn)).join(' · ')||'—'},
+    {label:'核心园区',getKey:c=>c.communities.slice(0,5).map(cm=>`<span style="color:${cm.recommendation_tier===1?'var(--accent)':cm.recommendation_tier===2?'var(--gold)':'var(--muted)'}">${cm.recommendation_tier?'T'+cm.recommendation_tier+' ':''}${esc(cm.name_cn)}</span>`).join(' · ')||'—'}},
     {label:'门槛示例',getKey:c=>{const p=c.policies.find(p=>p.requirements_cn);return p?esc(p.requirements_cn):'—'}},
     {label:'最后更新',getKey:c=>c.updated},
   ];
