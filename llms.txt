@@ -16,8 +16,8 @@ LynxOPC aggregates publicly available OPC (一人公司) rent-free, subsidy, and
 
 ## Data
 
-- JSON API: https://lynxopc.com/data/opc.json
-- RSS: https://lynxopc.com/rss.xml
+- JSON API: https://opc.lynxflow.co/data/opc.json
+- RSS: https://opc.lynxflow.co/rss.xml
 
 ## Pages
 
