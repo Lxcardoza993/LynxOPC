@@ -42,6 +42,11 @@ LynxOPC/
 └── README.md
 ```
 
+## 关注与订阅
+
+- 📰 **AI / 科技快讯**：Telegram 频道 [t.me/Lx_groups](https://t.me/Lx_groups) — 每日 AI 日报（模型发布·芯片·开源 Agent·纳指），[公开预览](https://t.me/s/Lx_groups)
+- ✍️ **主博客**：[blog.lynxflow.co](https://blog.lynxflow.co)
+
 ## 开发计划
 
 - [x] 项目骨架
